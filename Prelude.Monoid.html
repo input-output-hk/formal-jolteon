@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Prelude.Monoid</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--safe</a> <a id="20" class="Symbol">#-}</a>
+<a id="24" class="Keyword">module</a> <a id="31" href="Prelude.Monoid.html" class="Module">Prelude.Monoid</a> <a id="46" class="Keyword">where</a>
+
+<a id="53" class="Keyword">open</a> <a id="58" class="Keyword">import</a> <a id="65" href="Prelude.Init.html" class="Module">Prelude.Init</a>
+
+<a id="79" class="Keyword">record</a> <a id="Monoid"></a><a id="86" href="Prelude.Monoid.html#86" class="Record">Monoid</a> <a id="93" class="Symbol">(</a><a id="94" href="Prelude.Monoid.html#94" class="Bound">A</a> <a id="96" class="Symbol">:</a> <a id="98" href="Agda.Primitive.html#388" class="Primitive">Type</a><a id="102" class="Symbol">)</a> <a id="104" class="Symbol">:</a> <a id="106" href="Agda.Primitive.html#388" class="Primitive">Type</a> <a id="111" class="Keyword">where</a>
+  <a id="119" class="Keyword">field</a> <a id="Monoid.ε"></a><a id="125" href="Prelude.Monoid.html#125" class="Field">ε</a> <a id="127" class="Symbol">:</a> <a id="129" href="Prelude.Monoid.html#94" class="Bound">A</a>
+        <a id="Monoid._◇_"></a><a id="139" href="Prelude.Monoid.html#139" class="Field Operator">_◇_</a> <a id="143" class="Symbol">:</a> <a id="145" href="Prelude.Monoid.html#94" class="Bound">A</a> <a id="147" class="Symbol">→</a> <a id="149" href="Prelude.Monoid.html#94" class="Bound">A</a> <a id="151" class="Symbol">→</a> <a id="153" href="Prelude.Monoid.html#94" class="Bound">A</a>
+  <a id="157" class="Keyword">infixr</a> <a id="164" class="Number">6</a> <a id="166" href="Prelude.Monoid.html#139" class="Field Operator">_◇_</a>
+<a id="170" class="Keyword">open</a> <a id="175" href="Prelude.Monoid.html#86" class="Module">Monoid</a> <a id="182" class="Symbol">⦃...⦄</a> <a id="188" class="Keyword">public</a>
+
+<a id="196" class="Keyword">private</a> <a id="204" class="Keyword">variable</a> <a id="213" href="Prelude.Monoid.html#213" class="Generalizable">A</a> <a id="215" class="Symbol">:</a> <a id="217" href="Agda.Primitive.html#388" class="Primitive">Type</a>
+
+<a id="223" class="Keyword">instance</a>
+  <a id="Monoid-List"></a><a id="234" href="Prelude.Monoid.html#234" class="Function">Monoid-List</a> <a id="246" class="Symbol">:</a> <a id="248" href="Prelude.Monoid.html#86" class="Record">Monoid</a> <a id="255" class="Symbol">(</a><a id="256" href="Agda.Builtin.List.html#147" class="Datatype">List</a> <a id="261" href="Prelude.Monoid.html#213" class="Generalizable">A</a><a id="262" class="Symbol">)</a>
+  <a id="266" href="Prelude.Monoid.html#234" class="Function">Monoid-List</a> <a id="278" class="Symbol">.</a><a id="279" href="Prelude.Monoid.html#125" class="Field">ε</a> <a id="281" class="Symbol">=</a> <a id="283" href="Agda.Builtin.List.html#184" class="InductiveConstructor">[]</a>
+  <a id="288" href="Prelude.Monoid.html#234" class="Function">Monoid-List</a> <a id="300" class="Symbol">.</a><a id="301" href="Prelude.Monoid.html#139" class="Field Operator">_◇_</a> <a id="305" class="Symbol">=</a> <a id="307" href="Data.List.Base.html#1734" class="Function Operator">_++_</a>
+
+  <a id="Monoid-Bin"></a><a id="315" href="Prelude.Monoid.html#315" class="Function">Monoid-Bin</a> <a id="326" class="Symbol">:</a> <a id="328" href="Prelude.Monoid.html#86" class="Record">Monoid</a> <a id="335" href="Data.Nat.Binary.Base.html#1006" class="Datatype">Bitstring</a>
+  <a id="347" href="Prelude.Monoid.html#315" class="Function">Monoid-Bin</a> <a id="358" class="Symbol">.</a><a id="359" href="Prelude.Monoid.html#125" class="Field">ε</a> <a id="361" class="Symbol">=</a> <a id="363" href="Data.Nat.Binary.Base.html#1023" class="InductiveConstructor">Bin.zero</a>
+  <a id="374" href="Prelude.Monoid.html#315" class="Function">Monoid-Bin</a> <a id="385" class="Symbol">.</a><a id="386" href="Prelude.Monoid.html#139" class="Field Operator">_◇_</a> <a id="390" class="Symbol">=</a> <a id="392" href="Data.Nat.Binary.Base.html#2455" class="Function Operator">Bin._+_</a>
+</pre></body></html>

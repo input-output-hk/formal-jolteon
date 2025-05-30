@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Hash</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="Agda.css" />
+</head>
+<body>
+<!--
+<pre class="Agda"><a id="14" class="Symbol">{-#</a> <a id="18" class="Keyword">OPTIONS</a> <a id="26" class="Pragma">--safe</a> <a id="33" class="Symbol">#-}</a>
+<a id="37" class="Keyword">open</a> <a id="42" class="Keyword">import</a> <a id="49" href="Prelude.html" class="Module">Prelude</a>
+
+<a id="58" class="Keyword">module</a> <a id="65" href="Hash.html" class="Module">Hash</a> <a id="70" class="Symbol">(</a><a id="71" href="Hash.html#71" class="Bound">ByteString</a> <a id="82" class="Symbol">:</a> <a id="84" href="Agda.Primitive.html#388" class="Primitive">Type</a><a id="88" class="Symbol">)</a>
+            <a id="102" class="Symbol">⦃</a> <a id="104" href="Hash.html#104" class="Bound">_</a> <a id="106" class="Symbol">:</a> <a id="108" href="Prelude.DecEq.html#85" class="Record">DecEq</a> <a id="114" href="Hash.html#71" class="Bound">ByteString</a> <a id="125" class="Symbol">⦄</a>
+            <a id="139" class="Symbol">⦃</a> <a id="141" href="Hash.html#141" class="Bound">_</a> <a id="143" class="Symbol">:</a> <a id="145" href="Prelude.Monoid.html#86" class="Record">Monoid</a> <a id="152" href="Hash.html#71" class="Bound">ByteString</a> <a id="163" class="Symbol">⦄</a> <a id="165" class="Keyword">where</a>
+
+<a id="172" class="Keyword">private</a> <a id="180" class="Keyword">variable</a> <a id="189" href="Hash.html#189" class="Generalizable">A</a> <a id="191" href="Hash.html#191" class="Generalizable">B</a> <a id="193" class="Symbol">:</a> <a id="195" href="Agda.Primitive.html#388" class="Primitive">Type</a>
+</pre>-->
+<h1 id="hashes">Hashes</h1>
+Hashes are represented as bitstrings:
+<pre class="Agda"><a id="Digest"></a><a id="265" href="Hash.html#265" class="Function">Digest</a> <a id="Hash"></a><a id="272" href="Hash.html#272" class="Function">Hash</a> <a id="277" class="Symbol">:</a> <a id="279" href="Agda.Primitive.html#388" class="Primitive">Type</a>
+<a id="284" href="Hash.html#265" class="Function">Digest</a> <a id="291" class="Symbol">=</a> <a id="293" href="Hash.html#71" class="Bound">ByteString</a>
+<a id="304" href="Hash.html#272" class="Function">Hash</a>   <a id="311" class="Symbol">=</a> <a id="313" href="Hash.html#71" class="Bound">ByteString</a>
+</pre>
+<!--
+<pre class="Agda"><a id="341" class="Keyword">variable</a> <a id="350" href="Hash.html#350" class="Generalizable">H</a> <a id="352" href="Hash.html#352" class="Generalizable">H′</a> <a id="355" class="Symbol">:</a> <a id="357" href="Hash.html#272" class="Function">Hash</a>
+</pre>-->
+Digestable types are collected under a appropriate typeclass:
+<pre class="Agda"><a id="441" class="Keyword">record</a> <a id="Digestable"></a><a id="448" href="Hash.html#448" class="Record">Digestable</a> <a id="459" class="Symbol">(</a><a id="460" href="Hash.html#460" class="Bound">A</a> <a id="462" class="Symbol">:</a> <a id="464" href="Agda.Primitive.html#388" class="Primitive">Type</a><a id="468" class="Symbol">)</a> <a id="470" class="Symbol">:</a> <a id="472" href="Agda.Primitive.html#388" class="Primitive">Type</a> <a id="477" class="Keyword">where</a>
+  <a id="485" class="Keyword">field</a> <a id="Digestable.digest"></a><a id="491" href="Hash.html#491" class="Field">digest</a>     <a id="502" class="Symbol">:</a> <a id="504" href="Hash.html#460" class="Bound">A</a> <a id="506" class="Symbol">→</a> <a id="508" href="Hash.html#265" class="Function">Digest</a>
+        <a id="Digestable.digest-inj"></a><a id="523" href="Hash.html#523" class="Field">digest-inj</a> <a id="534" class="Symbol">:</a> <a id="536" href="Prelude.Init.html#7051" class="Function">Injective≡</a> <a id="547" href="Hash.html#491" class="Field">digest</a>
+</pre>
+<!--
+<pre class="Agda"><a id="571" class="Keyword">open</a> <a id="576" href="Hash.html#448" class="Module">Digestable</a> <a id="587" class="Symbol">⦃...⦄</a> <a id="593" class="Keyword">public</a>
+
+<a id="Digestable¹"></a><a id="601" href="Hash.html#601" class="Function">Digestable¹</a> <a id="613" class="Symbol">:</a> <a id="615" class="Symbol">∀</a> <a id="617" class="Symbol">{</a><a id="618" href="Hash.html#618" class="Bound">A</a><a id="619" class="Symbol">}</a> <a id="621" class="Symbol">→</a> <a id="623" class="Symbol">(</a><a id="624" href="Hash.html#618" class="Bound">A</a> <a id="626" class="Symbol">→</a> <a id="628" href="Agda.Primitive.html#388" class="Primitive">Type</a><a id="632" class="Symbol">)</a> <a id="634" class="Symbol">→</a> <a id="636" href="Agda.Primitive.html#388" class="Primitive">Type</a>
+<a id="641" href="Hash.html#601" class="Function">Digestable¹</a> <a id="653" href="Hash.html#653" class="Bound">P</a> <a id="655" class="Symbol">=</a> <a id="657" class="Symbol">∀</a> <a id="659" class="Symbol">{</a><a id="660" href="Hash.html#660" class="Bound">x</a><a id="661" class="Symbol">}</a> <a id="663" class="Symbol">→</a> <a id="665" href="Hash.html#448" class="Record">Digestable</a> <a id="676" class="Symbol">(</a><a id="677" href="Hash.html#653" class="Bound">P</a> <a id="679" href="Hash.html#660" class="Bound">x</a><a id="680" class="Symbol">)</a>
+
+<a id="683" class="Keyword">instance</a>
+  <a id="Digestable-Hash"></a><a id="694" href="Hash.html#694" class="Function">Digestable-Hash</a> <a id="710" class="Symbol">:</a> <a id="712" href="Hash.html#448" class="Record">Digestable</a> <a id="723" href="Hash.html#272" class="Function">Hash</a>
+  <a id="730" href="Hash.html#694" class="Function">Digestable-Hash</a> <a id="746" class="Symbol">=</a> <a id="748" class="Symbol">λ</a> <a id="750" class="Keyword">where</a>
+    <a id="760" class="Symbol">.</a><a id="761" href="Hash.html#491" class="Field">digest</a> <a id="768" class="Symbol">→</a> <a id="770" href="Function.Base.html#704" class="Function">id</a>
+    <a id="777" class="Symbol">.</a><a id="778" href="Hash.html#523" class="Field">digest-inj</a> <a id="789" class="Symbol">→</a> <a id="791" href="Function.Base.html#704" class="Function">id</a>
+</pre>-->
+We assume an injective hash function and ways to digest base types:
+<pre class="Agda"><a id="879" class="Keyword">record</a> <a id="HashAssumptions"></a><a id="886" href="Hash.html#886" class="Record">HashAssumptions</a> <a id="902" class="Symbol">:</a> <a id="904" href="Agda.Primitive.html#388" class="Primitive">Type₁</a> <a id="910" class="Keyword">where</a>
+  <a id="918" class="Keyword">field</a>
+    <a id="928" class="Comment">-- how to digest base types</a>
+    <a id="960" class="Keyword">instance</a>
+      <a id="HashAssumptions.Digestable-ℕ"></a><a id="975" href="Hash.html#975" class="Field">Digestable-ℕ</a>   <a id="990" class="Symbol">:</a> <a id="992" href="Hash.html#448" class="Record">Digestable</a> <a id="1003" href="Agda.Builtin.Nat.html#203" class="Datatype">ℕ</a>
+      <a id="HashAssumptions.Digestable-ℕ×ℕ"></a><a id="1011" href="Hash.html#1011" class="Field">Digestable-ℕ×ℕ</a> <a id="1026" class="Symbol">:</a> <a id="1028" href="Hash.html#448" class="Record">Digestable</a> <a id="1039" class="Symbol">(</a><a id="1040" href="Agda.Builtin.Nat.html#203" class="Datatype">ℕ</a> <a id="1042" href="Data.Product.Base.html#1618" class="Function Operator">×</a> <a id="1044" href="Agda.Builtin.Nat.html#203" class="Datatype">ℕ</a><a id="1045" class="Symbol">)</a>
+      <a id="HashAssumptions.Digestable-H×ℕ"></a><a id="1053" href="Hash.html#1053" class="Field">Digestable-H×ℕ</a> <a id="1068" class="Symbol">:</a> <a id="1070" href="Hash.html#448" class="Record">Digestable</a> <a id="1081" class="Symbol">(</a><a id="1082" href="Hash.html#272" class="Function">Hash</a> <a id="1087" href="Data.Product.Base.html#1618" class="Function Operator">×</a> <a id="1089" href="Agda.Builtin.Nat.html#203" class="Datatype">ℕ</a><a id="1090" class="Symbol">)</a>
+
+    <a id="1097" class="Comment">-- agreed-upon hash function (e.g. SHA256)</a>
+    <a id="HashAssumptions.hash"></a><a id="1144" href="Hash.html#1144" class="Field">hash</a>     <a id="1153" class="Symbol">:</a> <a id="1155" href="Hash.html#265" class="Function">Digest</a> <a id="1162" class="Symbol">→</a> <a id="1164" href="Hash.html#272" class="Function">Hash</a>
+    <a id="HashAssumptions.hash-inj"></a><a id="1173" href="Hash.html#1173" class="Field">hash-inj</a> <a id="1182" class="Symbol">:</a> <a id="1184" href="Prelude.Init.html#7051" class="Function">Injective≡</a> <a id="1195" href="Hash.html#1144" class="Field">hash</a>
+
+  <a id="1203" class="Keyword">infix</a> <a id="1209" class="Number">100</a> <a id="1213" href="Hash.html#1218" class="Function Operator">_♯</a>
+  <a id="HashAssumptions._♯"></a><a id="1218" href="Hash.html#1218" class="Function Operator">_♯</a> <a id="1221" class="Symbol">:</a> <a id="1223" class="Symbol">⦃</a> <a id="1225" href="Hash.html#448" class="Record">Digestable</a> <a id="1236" href="Hash.html#189" class="Generalizable">A</a> <a id="1238" class="Symbol">⦄</a> <a id="1240" class="Symbol">→</a> <a id="1242" href="Hash.html#189" class="Generalizable">A</a> <a id="1244" class="Symbol">→</a> <a id="1246" href="Hash.html#272" class="Function">Hash</a>
+  <a id="1253" href="Hash.html#1218" class="Function Operator">_♯</a> <a id="1256" class="Symbol">=</a> <a id="1258" href="Hash.html#1144" class="Field">hash</a> <a id="1263" href="Function.Base.html#1115" class="Function Operator">∘</a> <a id="1265" href="Hash.html#491" class="Field">digest</a>
+
+  <a id="HashAssumptions.♯-inj"></a><a id="1275" href="Hash.html#1275" class="Function">♯-inj</a> <a id="1281" class="Symbol">:</a> <a id="1283" class="Symbol">⦃</a> <a id="1285" href="Hash.html#1285" class="Bound">_</a> <a id="1287" class="Symbol">:</a> <a id="1289" href="Hash.html#448" class="Record">Digestable</a> <a id="1300" href="Hash.html#189" class="Generalizable">A</a> <a id="1302" class="Symbol">⦄</a> <a id="1304" class="Symbol">→</a> <a id="1306" href="Prelude.Init.html#7051" class="Function">Injective≡</a> <a id="1317" class="Symbol">{</a><a id="1318" class="Argument">A</a> <a id="1320" class="Symbol">=</a> <a id="1322" href="Hash.html#189" class="Generalizable">A</a><a id="1323" class="Symbol">}</a> <a id="1325" href="Hash.html#1218" class="Function Operator">_♯</a>
+  <a id="1330" href="Hash.html#1275" class="Function">♯-inj</a> <a id="1336" class="Symbol">=</a> <a id="1338" href="Hash.html#523" class="Field">digest-inj</a> <a id="1349" href="Function.Base.html#1115" class="Function Operator">∘</a> <a id="1351" href="Hash.html#1173" class="Field">hash-inj</a>
+</pre>
+<h1 id="signatures">Signatures</h1>
+Let’s start with various aliases for bitstrings and key pairs:
+<pre class="Agda"><a id="Key"></a><a id="1450" href="Hash.html#1450" class="Function">Key</a> <a id="Signature"></a><a id="1454" href="Hash.html#1454" class="Function">Signature</a> <a id="PublicKey"></a><a id="1464" href="Hash.html#1464" class="Function">PublicKey</a> <a id="PrivateKey"></a><a id="1474" href="Hash.html#1474" class="Function">PrivateKey</a> <a id="1485" class="Symbol">:</a> <a id="1487" href="Agda.Primitive.html#388" class="Primitive">Type</a>
+<a id="1492" href="Hash.html#1450" class="Function">Key</a>        <a id="1503" class="Symbol">=</a> <a id="1505" href="Hash.html#71" class="Bound">ByteString</a>
+<a id="1516" href="Hash.html#1454" class="Function">Signature</a>  <a id="1527" class="Symbol">=</a> <a id="1529" href="Hash.html#71" class="Bound">ByteString</a>
+<a id="1540" href="Hash.html#1464" class="Function">PublicKey</a>  <a id="1551" class="Symbol">=</a> <a id="1553" href="Hash.html#1450" class="Function">Key</a>
+<a id="1557" href="Hash.html#1474" class="Function">PrivateKey</a> <a id="1568" class="Symbol">=</a> <a id="1570" href="Hash.html#1450" class="Function">Key</a>
+
+<a id="1575" class="Keyword">record</a> <a id="KeyPair"></a><a id="1582" href="Hash.html#1582" class="Record">KeyPair</a> <a id="1590" class="Symbol">:</a> <a id="1592" href="Agda.Primitive.html#388" class="Primitive">Type</a> <a id="1597" class="Keyword">where</a>
+  <a id="1605" class="Keyword">constructor</a> <a id="mk-keyPair"></a><a id="1617" href="Hash.html#1617" class="InductiveConstructor">mk-keyPair</a>
+  <a id="1630" class="Keyword">field</a> <a id="KeyPair.publicKey"></a><a id="1636" href="Hash.html#1636" class="Field">publicKey</a>  <a id="1647" class="Symbol">:</a> <a id="1649" href="Hash.html#1464" class="Function">PublicKey</a>
+        <a id="KeyPair.privateKey"></a><a id="1667" href="Hash.html#1667" class="Field">privateKey</a> <a id="1678" class="Symbol">:</a> <a id="1680" href="Hash.html#1474" class="Function">PrivateKey</a>
+<a id="1691" class="Keyword">open</a> <a id="1696" href="Hash.html#1582" class="Module">KeyPair</a> <a id="1704" class="Keyword">public</a>
+</pre>
+We then assume that there is a way to sign (hashable) values, as well as
+the existence of a suitable signature verification algorithm
+(e.g. SHA256).
+<pre class="Agda"><a id="1873" class="Keyword">record</a> <a id="SignatureAssumptions"></a><a id="1880" href="Hash.html#1880" class="Record">SignatureAssumptions</a> <a id="1901" class="Symbol">:</a> <a id="1903" href="Agda.Primitive.html#388" class="Primitive">Type₁</a> <a id="1909" class="Keyword">where</a>
+  <a id="1917" class="Keyword">field</a>
+    <a id="SignatureAssumptions.verify-signature"></a><a id="1927" href="Hash.html#1927" class="Field">verify-signature</a> <a id="1944" class="Symbol">:</a> <a id="1946" href="Hash.html#1464" class="Function">PublicKey</a> <a id="1956" class="Symbol">→</a> <a id="1958" href="Hash.html#1454" class="Function">Signature</a> <a id="1968" class="Symbol">→</a> <a id="1970" href="Hash.html#272" class="Function">Hash</a> <a id="1975" class="Symbol">→</a> <a id="1977" href="Agda.Builtin.Bool.html#173" class="Datatype">Bool</a>
+    <a id="SignatureAssumptions.sign"></a><a id="1986" href="Hash.html#1986" class="Field">sign</a> <a id="1991" class="Symbol">:</a> <a id="1993" class="Symbol">⦃</a> <a id="1995" href="Hash.html#448" class="Record">Digestable</a> <a id="2006" href="Hash.html#189" class="Generalizable">A</a> <a id="2008" class="Symbol">⦄</a> <a id="2010" class="Symbol">→</a> <a id="2012" href="Hash.html#1450" class="Function">Key</a> <a id="2016" class="Symbol">→</a> <a id="2018" href="Hash.html#189" class="Generalizable">A</a> <a id="2020" class="Symbol">→</a> <a id="2022" href="Hash.html#1454" class="Function">Signature</a>
+</pre>
+</body>
+</html>

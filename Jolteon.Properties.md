@@ -1,0 +1,16 @@
+# Proven properties of the Jolteon protocol
+<!--
+<pre class="Agda"><a id="58" class="Symbol">{-#</a> <a id="62" class="Keyword">OPTIONS</a> <a id="70" class="Pragma">--safe</a> <a id="77" class="Symbol">#-}</a>
+<a id="81" class="Keyword">open</a> <a id="86" class="Keyword">import</a> <a id="93" href="Jolteon.Assumptions.html" class="Module">Jolteon.Assumptions</a>
+
+<a id="114" class="Keyword">module</a> <a id="121" href="Jolteon.Properties.html" class="Module">Jolteon.Properties</a> <a id="140" class="Symbol">(</a><a id="141" href="Jolteon.Properties.html#141" class="Bound">⋯</a> <a id="143" class="Symbol">:</a> <a id="145" class="Symbol">_)</a> <a id="148" class="Keyword">where</a>
+</pre>-->
+
+<pre class="Agda"><a id="171" class="Keyword">open</a> <a id="176" class="Keyword">import</a> <a id="183" href="Jolteon.Properties.Core.html" class="Module">Jolteon.Properties.Core</a> <a id="207" href="Jolteon.Properties.html#141" class="Bound">⋯</a> <a id="209" class="Keyword">public</a>
+<a id="216" class="Keyword">open</a> <a id="221" class="Keyword">import</a> <a id="228" href="Jolteon.Properties.State.html" class="Module">Jolteon.Properties.State</a> <a id="253" href="Jolteon.Properties.html#141" class="Bound">⋯</a> <a id="255" class="Keyword">public</a>
+<a id="262" class="Keyword">open</a> <a id="267" class="Keyword">import</a> <a id="274" href="Jolteon.Properties.Steps.html" class="Module">Jolteon.Properties.Steps</a> <a id="299" href="Jolteon.Properties.html#141" class="Bound">⋯</a> <a id="301" class="Keyword">public</a>
+<a id="308" class="Keyword">open</a> <a id="313" class="Keyword">import</a> <a id="320" href="Jolteon.Properties.Votes.html" class="Module">Jolteon.Properties.Votes</a> <a id="345" href="Jolteon.Properties.html#141" class="Bound">⋯</a> <a id="347" class="Keyword">public</a>
+<a id="354" class="Keyword">open</a> <a id="359" class="Keyword">import</a> <a id="366" href="Jolteon.Properties.QuorumIntersection.html" class="Module">Jolteon.Properties.QuorumIntersection</a> <a id="404" href="Jolteon.Properties.html#141" class="Bound">⋯</a> <a id="406" class="Keyword">public</a>
+<a id="413" class="Keyword">open</a> <a id="418" class="Keyword">import</a> <a id="425" href="Jolteon.Properties.NonConsecutiveBlocks.html" class="Module">Jolteon.Properties.NonConsecutiveBlocks</a> <a id="465" href="Jolteon.Properties.html#141" class="Bound">⋯</a> <a id="467" class="Keyword">public</a>
+<a id="474" class="Keyword">open</a> <a id="479" class="Keyword">import</a> <a id="486" href="Jolteon.Properties.Safety.html" class="Module">Jolteon.Properties.Safety</a> <a id="512" href="Jolteon.Properties.html#141" class="Bound">⋯</a> <a id="514" class="Keyword">public</a>
+</pre>

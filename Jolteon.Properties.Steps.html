@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Jolteon.Properties.Steps</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="Agda.css" />
+</head>
+<body>
+<h1 id="step-properties">Step properties</h1>
+&lt;!–
+<pre class="Agda"><a id="33" class="Symbol">{-#</a> <a id="37" class="Keyword">OPTIONS</a> <a id="45" class="Pragma">--safe</a> <a id="52" class="Symbol">#-}</a>
+<a id="56" class="Keyword">open</a> <a id="61" class="Keyword">import</a> <a id="68" href="Jolteon.Assumptions.html" class="Module">Jolteon.Assumptions</a>
+</pre>
+<pre class="Agda"><a id="100" class="Keyword">module</a> <a id="107" href="Jolteon.Properties.Steps.html" class="Module">Jolteon.Properties.Steps</a> <a id="132" class="Symbol">(</a><a id="133" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="135" class="Symbol">:</a> <a id="137" class="Symbol">_)</a> <a id="140" class="Symbol">(</a><a id="141" class="Keyword">open</a> <a id="146" href="Jolteon.Assumptions.html#193" class="Module">Assumptions</a> <a id="158" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a><a id="159" class="Symbol">)</a> <a id="161" class="Keyword">where</a>
+
+<a id="168" class="Keyword">open</a> <a id="173" class="Keyword">import</a> <a id="180" href="Jolteon.html" class="Module">Jolteon</a> <a id="188" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a>
+
+<a id="191" class="Keyword">open</a> <a id="196" class="Keyword">import</a> <a id="203" href="Jolteon.Properties.Steps.Core.html" class="Module">Jolteon.Properties.Steps.Core</a> <a id="233" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="235" class="Keyword">public</a>
+<a id="242" class="Keyword">open</a> <a id="247" class="Keyword">import</a> <a id="254" href="Jolteon.Properties.Steps.Phases.html" class="Module">Jolteon.Properties.Steps.Phases</a> <a id="286" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="288" class="Keyword">public</a>
+<a id="295" class="Keyword">open</a> <a id="300" class="Keyword">import</a> <a id="307" href="Jolteon.Properties.Steps.Now.html" class="Module">Jolteon.Properties.Steps.Now</a> <a id="336" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="338" class="Keyword">public</a>
+<a id="345" class="Keyword">open</a> <a id="350" class="Keyword">import</a> <a id="357" href="Jolteon.Properties.Steps.RCur.html" class="Module">Jolteon.Properties.Steps.RCur</a> <a id="387" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="389" class="Keyword">public</a>
+<a id="396" class="Keyword">open</a> <a id="401" class="Keyword">import</a> <a id="408" href="Jolteon.Properties.Steps.RVote.html" class="Module">Jolteon.Properties.Steps.RVote</a> <a id="439" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="441" class="Keyword">public</a>
+<a id="448" class="Keyword">open</a> <a id="453" class="Keyword">import</a> <a id="460" href="Jolteon.Properties.Steps.QCRound.html" class="Module">Jolteon.Properties.Steps.QCRound</a> <a id="493" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="495" class="Keyword">public</a>
+<a id="502" class="Keyword">open</a> <a id="507" class="Keyword">import</a> <a id="514" href="Jolteon.Properties.Steps.QCHigh.html" class="Module">Jolteon.Properties.Steps.QCHigh</a> <a id="546" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="548" class="Keyword">public</a>
+<a id="555" class="Keyword">open</a> <a id="560" class="Keyword">import</a> <a id="567" href="Jolteon.Properties.Steps.Timeouts.html" class="Module">Jolteon.Properties.Steps.Timeouts</a> <a id="601" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="603" class="Keyword">public</a>
+<a id="610" class="Keyword">open</a> <a id="615" class="Keyword">import</a> <a id="622" href="Jolteon.Properties.Steps.Voting.html" class="Module">Jolteon.Properties.Steps.Voting</a> <a id="654" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="656" class="Keyword">public</a>
+<a id="663" class="Keyword">open</a> <a id="668" class="Keyword">import</a> <a id="675" href="Jolteon.Properties.Steps.Blocks.html" class="Module">Jolteon.Properties.Steps.Blocks</a> <a id="707" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="709" class="Keyword">public</a>
+<a id="716" class="Keyword">open</a> <a id="721" class="Keyword">import</a> <a id="728" href="Jolteon.Properties.Steps.CommitPoints.html" class="Module">Jolteon.Properties.Steps.CommitPoints</a> <a id="766" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="768" class="Keyword">public</a>
+<a id="775" class="Keyword">open</a> <a id="780" class="Keyword">import</a> <a id="787" href="Jolteon.Properties.Steps.Certification.html" class="Module">Jolteon.Properties.Steps.Certification</a> <a id="826" href="Jolteon.Properties.Steps.html#133" class="Bound">⋯</a> <a id="828" class="Keyword">public</a>
+</pre>
+</body>
+</html>

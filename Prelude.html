@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Prelude</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--safe</a> <a id="20" class="Symbol">#-}</a>
+<a id="24" class="Keyword">module</a> <a id="31" href="Prelude.html" class="Module">Prelude</a> <a id="39" class="Keyword">where</a>
+
+<a id="46" class="Comment">-- gather common definition from https://github.com/agda/agda-stdlib</a>
+<a id="115" class="Keyword">open</a> <a id="120" class="Keyword">import</a> <a id="127" href="Prelude.Init.html" class="Module">Prelude.Init</a> <a id="140" class="Keyword">public</a>
+
+<a id="148" class="Comment">-- ported from https://github.com/omelkonian/agda-stdlib-classes</a>
+<a id="213" class="Keyword">open</a> <a id="218" class="Keyword">import</a> <a id="225" href="Prelude.DecEq.html" class="Module">Prelude.DecEq</a> <a id="239" class="Keyword">public</a>
+<a id="246" class="Keyword">open</a> <a id="251" class="Keyword">import</a> <a id="258" href="Prelude.Decidable.html" class="Module">Prelude.Decidable</a> <a id="276" class="Keyword">public</a>
+<a id="283" class="Keyword">open</a> <a id="288" class="Keyword">import</a> <a id="295" href="Prelude.Monoid.html" class="Module">Prelude.Monoid</a> <a id="310" class="Keyword">public</a>
+<a id="317" class="Keyword">open</a> <a id="322" class="Keyword">import</a> <a id="329" href="Prelude.Monad.html" class="Module">Prelude.Monad</a> <a id="343" class="Keyword">public</a>
+
+<a id="351" class="Comment">-- ported from https://github.com/omelkonian/formal-prelude</a>
+<a id="411" class="Keyword">open</a> <a id="416" class="Keyword">import</a> <a id="423" href="Prelude.Maybes.html" class="Module">Prelude.Maybes</a> <a id="438" class="Keyword">public</a>
+<a id="445" class="Keyword">open</a> <a id="450" class="Keyword">import</a> <a id="457" href="Prelude.LiteralSequences.html" class="Module">Prelude.LiteralSequences</a> <a id="482" class="Keyword">public</a>
+<a id="489" class="Keyword">open</a> <a id="494" class="Keyword">import</a> <a id="501" href="Prelude.InferenceRules.html" class="Module">Prelude.InferenceRules</a> <a id="524" class="Keyword">public</a>
+<a id="531" class="Keyword">open</a> <a id="536" class="Keyword">import</a> <a id="543" href="Prelude.Allable.html" class="Module">Prelude.Allable</a> <a id="559" class="Keyword">public</a>
+<a id="566" class="Keyword">open</a> <a id="571" class="Keyword">import</a> <a id="578" href="Prelude.Anyable.html" class="Module">Prelude.Anyable</a> <a id="594" class="Keyword">public</a>
+<a id="601" class="Keyword">open</a> <a id="606" class="Keyword">import</a> <a id="613" href="Prelude.Irrelevance.html" class="Module">Prelude.Irrelevance</a> <a id="633" class="Keyword">public</a>
+<a id="640" class="Keyword">open</a> <a id="645" class="Keyword">import</a> <a id="652" href="Prelude.Default.html" class="Module">Prelude.Default</a> <a id="668" class="Keyword">public</a>
+<a id="675" class="Keyword">open</a> <a id="680" class="Keyword">import</a> <a id="687" href="Prelude.FromNat.html" class="Module">Prelude.FromNat</a> <a id="703" class="Keyword">public</a>
+<a id="710" class="Keyword">open</a> <a id="715" class="Keyword">import</a> <a id="722" href="Prelude.Initial.html" class="Module">Prelude.Initial</a> <a id="738" class="Keyword">public</a>
+<a id="745" class="Keyword">open</a> <a id="750" class="Keyword">import</a> <a id="757" href="Prelude.Closures.html" class="Module">Prelude.Closures</a>
+<a id="774" class="Keyword">open</a> <a id="779" class="Keyword">import</a> <a id="786" href="Prelude.Lists.html" class="Module">Prelude.Lists</a> <a id="800" class="Keyword">public</a>
+<a id="807" class="Keyword">open</a> <a id="812" class="Keyword">import</a> <a id="819" href="Prelude.Bitmasks.html" class="Module">Prelude.Bitmasks</a> <a id="836" class="Keyword">public</a>
+
+<a id="844" class="Comment">-- ported from https://github.com/IntersectMBO/formal-ledger-specifications</a>
+<a id="920" class="Keyword">open</a> <a id="925" class="Keyword">import</a> <a id="932" href="Prelude.STS.html" class="Module">Prelude.STS</a> <a id="944" class="Keyword">public</a>
+
+<a id="952" class="Comment">-- ported from https://stackoverflow.com/a/58709254</a>
+<a id="1004" class="Keyword">open</a> <a id="1009" class="Keyword">import</a> <a id="1016" href="Prelude.AssocList.html" class="Module">Prelude.AssocList</a> <a id="1034" class="Keyword">public</a>
+
+<a id="1042" class="Comment">-- extra stuff (import manually)</a>
+<a id="1075" class="Keyword">open</a> <a id="1080" class="Keyword">import</a> <a id="1087" href="Prelude.PFin.html" class="Module">Prelude.PFin</a>
+<a id="1100" class="Keyword">open</a> <a id="1105" class="Keyword">import</a> <a id="1112" href="Prelude.PVec.html" class="Module">Prelude.PVec</a>
+<a id="1125" class="Keyword">open</a> <a id="1130" class="Keyword">import</a> <a id="1137" href="Prelude.Result.html" class="Module">Prelude.Result</a>
+</pre></body></html>

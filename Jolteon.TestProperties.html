@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Jolteon.TestProperties</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="Agda.css" />
+</head>
+<body>
+<h1 id="jolteon-properties-to-test">Jolteon Properties to Test</h1>
+<!--
+<pre class="Agda"><a id="43" class="Symbol">{-#</a> <a id="47" class="Keyword">OPTIONS</a> <a id="55" class="Pragma">--safe</a> <a id="62" class="Symbol">#-}</a>
+<a id="66" class="Keyword">open</a> <a id="71" class="Keyword">import</a> <a id="78" href="Jolteon.Assumptions.html" class="Module">Jolteon.Assumptions</a>
+
+<a id="99" class="Keyword">open</a> <a id="104" class="Keyword">import</a> <a id="111" href="Prelude.html" class="Module">Prelude</a>
+
+<a id="120" class="Keyword">module</a> <a id="127" href="Jolteon.TestProperties.html" class="Module">Jolteon.TestProperties</a> <a id="150" class="Symbol">(</a><a id="151" href="Jolteon.TestProperties.html#151" class="Bound">⋯</a> <a id="153" class="Symbol">:</a> <a id="155" class="Symbol">_)</a> <a id="158" class="Keyword">where</a>
+
+<a id="165" class="Keyword">open</a> <a id="170" href="Jolteon.Assumptions.html#193" class="Module">Assumptions</a> <a id="182" href="Jolteon.TestProperties.html#151" class="Bound">⋯</a>
+<a id="184" class="Keyword">open</a> <a id="189" class="Keyword">import</a> <a id="196" href="Jolteon.html" class="Module">Jolteon</a> <a id="204" href="Jolteon.TestProperties.html#151" class="Bound">⋯</a>
+<a id="206" class="Keyword">import</a> <a id="213" href="Jolteon.Properties.State.Invariants.html" class="Module">Jolteon.Properties.State.Invariants</a> <a id="249" href="Jolteon.TestProperties.html#151" class="Bound">⋯</a> <a id="251" class="Symbol">as</a> <a id="P"></a><a id="254" href="Jolteon.TestProperties.html#254" class="Module">P</a>
+
+<a id="257" class="Keyword">private</a> <a id="265" class="Keyword">variable</a> <a id="274" href="Jolteon.TestProperties.html#274" class="Generalizable">A</a> <a id="276" class="Symbol">:</a> <a id="278" href="Agda.Primitive.html#388" class="Primitive">Type</a>
+</pre>-->
+<h2 id="threshold-signatures">Threshold Signatures</h2>
+<pre class="Agda"><a id="324" class="Keyword">module</a> <a id="331" href="Jolteon.TestProperties.html#331" class="Module">_</a> <a id="333" class="Symbol">(</a><a id="334" href="Jolteon.TestProperties.html#334" class="Bound">ts</a> <a id="337" class="Symbol">:</a> <a id="339" href="Jolteon.Block.html#1231" class="Record">ThresholdSig</a> <a id="352" href="Jolteon.TestProperties.html#274" class="Generalizable">A</a><a id="353" class="Symbol">)</a> <a id="355" class="Keyword">where</a>
+</pre>
+Vote shares of a threshold signature do not contain duplicates and form
+a majority
+<pre class="Agda">  <a id="459" href="Jolteon.TestProperties.html#459" class="Function">ts-unique</a>   <a id="471" class="Symbol">:</a> <a id="473" href="Data.List.Relation.Unary.Unique.Setoid.html#785" class="Datatype">Unique</a> <a id="480" class="Symbol">(</a><a id="481" href="Jolteon.TestProperties.html#334" class="Bound">ts</a> <a id="484" class="Symbol">.</a><a id="485" href="Jolteon.Block.html#1302" class="Field">shares</a><a id="491" class="Symbol">)</a>
+  <a id="495" href="Jolteon.TestProperties.html#495" class="Function">ts-majority</a> <a id="507" class="Symbol">:</a> <a id="509" href="Jolteon.Assumptions.html#1487" class="Function">IsMajority</a> <a id="520" class="Symbol">(</a><a id="521" href="Jolteon.TestProperties.html#334" class="Bound">ts</a> <a id="524" class="Symbol">.</a><a id="525" href="Jolteon.Block.html#1302" class="Field">shares</a><a id="531" class="Symbol">)</a>
+</pre>
+<!--
+<pre class="Agda">  <a id="552" href="Jolteon.TestProperties.html#459" class="Function">ts-unique</a> <a id="562" class="Symbol">=</a> <a id="564" href="Jolteon.Block.html#1802" class="Function">getUnique</a> <a id="574" href="Jolteon.TestProperties.html#334" class="Bound">ts</a>
+  <a id="579" href="Jolteon.TestProperties.html#495" class="Function">ts-majority</a> <a id="591" class="Symbol">=</a> <a id="593" href="Jolteon.Block.html#1733" class="Function">getQuorum</a> <a id="603" href="Jolteon.TestProperties.html#334" class="Bound">ts</a>
+</pre>-->
+<h2 id="quorum-certificates">Quorum Certificates</h2>
+<pre class="Agda"><a id="647" class="Keyword">module</a> <a id="654" href="Jolteon.TestProperties.html#654" class="Module">_</a> <a id="656" class="Symbol">(</a><a id="657" href="Jolteon.TestProperties.html#657" class="Bound">qc</a> <a id="660" class="Symbol">:</a> <a id="662" href="Jolteon.Block.html#1905" class="Function">QC</a><a id="664" class="Symbol">)</a> <a id="666" class="Keyword">where</a>
+</pre>
+A QC has a payload of BlockId <code>bid</code> and a round
+<code>r</code>. The round <code>r</code> should be equal to the round of
+the block whose id is <code>bid</code>. <!--
+<pre class="Agda">  <a id="820" class="Keyword">instance</a>
+    <a id="833" href="Jolteon.TestProperties.html#833" class="Function">_</a> <a id="835" class="Symbol">=</a> <a id="837" href="Jolteon.Block.html#2909" class="Record">HasRound</a>   <a id="848" class="Symbol">(</a><a id="849" href="Jolteon.Block.html#1208" class="Function">BlockId</a> <a id="857" href="Data.Product.Base.html#1618" class="Function Operator">×</a> <a id="859" href="Jolteon.Base.html#101" class="Function">Round</a><a id="864" class="Symbol">)</a> <a id="866" href="Function.Base.html#4486" class="Function Operator">∋</a> <a id="868" class="Symbol">λ</a> <a id="870" class="Keyword">where</a> <a id="876" class="Symbol">.</a><a id="877" href="Jolteon.Block.html#2950" class="Field Operator">_∙round</a>   <a id="887" class="Symbol">→</a> <a id="889" href="Data.Product.Base.html#650" class="Field">proj₂</a>
+    <a id="899" href="Jolteon.TestProperties.html#899" class="Function">_</a> <a id="901" class="Symbol">=</a> <a id="903" href="Jolteon.Block.html#8333" class="Record">HasBlockId</a> <a id="914" class="Symbol">(</a><a id="915" href="Jolteon.Block.html#1208" class="Function">BlockId</a> <a id="923" href="Data.Product.Base.html#1618" class="Function Operator">×</a> <a id="925" href="Jolteon.Base.html#101" class="Function">Round</a><a id="930" class="Symbol">)</a> <a id="932" href="Function.Base.html#4486" class="Function Operator">∋</a> <a id="934" class="Symbol">λ</a> <a id="936" class="Keyword">where</a> <a id="942" class="Symbol">.</a><a id="943" href="Jolteon.Block.html#8376" class="Field Operator">_∙blockId</a> <a id="953" class="Symbol">→</a> <a id="955" href="Data.Product.Base.html#636" class="Field">proj₁</a>
+</pre>-->
+<pre class="Agda">  <a id="979" href="Jolteon.TestProperties.html#979" class="Function">qc-round</a> <a id="988" class="Symbol">=</a> <a id="990" class="Symbol">∀</a> <a id="992" class="Symbol">(</a><a id="993" href="Jolteon.TestProperties.html#993" class="Bound">b</a> <a id="995" class="Symbol">:</a> <a id="997" href="Jolteon.Block.html#7428" class="Record">Block</a><a id="1002" class="Symbol">)</a> <a id="1004" class="Symbol">→</a>
+    <a id="1010" href="Jolteon.TestProperties.html#993" class="Bound">b</a> <a id="1012" href="Jolteon.Block.html#8376" class="Field Operator">∙blockId</a> <a id="1021" href="Agda.Builtin.Equality.html#150" class="Datatype Operator">≡</a> <a id="1023" href="Jolteon.TestProperties.html#657" class="Bound">qc</a> <a id="1026" class="Symbol">.</a><a id="1027" href="Jolteon.Block.html#1276" class="Field">payload</a> <a id="1035" href="Jolteon.Block.html#8376" class="Field Operator">∙blockId</a>
+    <a id="1048" href="Prelude.InferenceRules.html#13678" class="Function Operator">─────────────────────────────────</a>
+    <a id="1086" href="Jolteon.TestProperties.html#993" class="Bound">b</a> <a id="1088" href="Jolteon.Block.html#2950" class="Field Operator">∙round</a>   <a id="1097" href="Agda.Builtin.Equality.html#150" class="Datatype Operator">≡</a> <a id="1099" href="Jolteon.TestProperties.html#657" class="Bound">qc</a> <a id="1102" class="Symbol">.</a><a id="1103" href="Jolteon.Block.html#1276" class="Field">payload</a> <a id="1111" href="Jolteon.Block.html#2950" class="Field Operator">∙round</a>
+</pre>
+<h2 id="timeout-certificates">Timeout Certificates</h2>
+<pre class="Agda"><a id="1156" class="Keyword">module</a> <a id="1163" href="Jolteon.TestProperties.html#1163" class="Module">_</a> <a id="1165" class="Symbol">(</a><a id="1166" href="Jolteon.TestProperties.html#1166" class="Bound">tc</a> <a id="1169" class="Symbol">:</a> <a id="1171" href="Jolteon.Block.html#4423" class="Record">TC</a><a id="1173" class="Symbol">)</a> <a id="1175" class="Keyword">where</a>
+</pre>
+The shares in a timeout certificate are unique, form a majority, and
+have proper rounds:
+<pre class="Agda">  <a id="1285" href="Jolteon.TestProperties.html#1285" class="Function">tc-unique</a>   <a id="1297" class="Symbol">:</a> <a id="1299" href="Prelude.Lists.html#22395" class="Function">UniqueBy</a> <a id="1308" href="Jolteon.Block.html#493" class="Field">node</a> <a id="1313" class="Symbol">(</a><a id="1314" href="Jolteon.TestProperties.html#1166" class="Bound">tc</a> <a id="1317" class="Symbol">.</a><a id="1318" href="Jolteon.Block.html#4471" class="Field">tes</a><a id="1321" class="Symbol">)</a>
+  <a id="1325" href="Jolteon.TestProperties.html#1325" class="Function">tc-majority</a> <a id="1337" class="Symbol">:</a> <a id="1339" href="Jolteon.Assumptions.html#1487" class="Function">IsMajority</a> <a id="1350" class="Symbol">(</a><a id="1351" href="Jolteon.TestProperties.html#1166" class="Bound">tc</a> <a id="1354" class="Symbol">.</a><a id="1355" href="Jolteon.Block.html#4471" class="Field">tes</a><a id="1358" class="Symbol">)</a>
+  <a id="1362" href="Jolteon.TestProperties.html#1362" class="Function">tc-rounds</a>   <a id="1374" class="Symbol">:</a> <a id="1376" href="Prelude.Allable.html#273" class="Function">∀[</a> <a id="1379" href="Jolteon.TestProperties.html#1379" class="Bound">te</a> <a id="1382" href="Prelude.Allable.html#273" class="Function">∈</a> <a id="1384" href="Jolteon.TestProperties.html#1166" class="Bound">tc</a> <a id="1387" class="Symbol">.</a><a id="1388" href="Jolteon.Block.html#4471" class="Field">tes</a> <a id="1392" href="Prelude.Allable.html#273" class="Function">]</a>
+                    <a id="1414" class="Symbol">(</a><a id="1415" href="Jolteon.TestProperties.html#1379" class="Bound">te</a> <a id="1418" href="Jolteon.Block.html#2950" class="Field Operator">∙round</a>       <a id="1431" href="Agda.Builtin.Equality.html#150" class="Datatype Operator">≡</a> <a id="1433" href="Jolteon.TestProperties.html#1166" class="Bound">tc</a> <a id="1436" class="Symbol">.</a><a id="1437" href="Jolteon.Block.html#4451" class="Field">roundTC</a><a id="1444" class="Symbol">)</a>
+                  <a id="1464" href="Data.Product.Base.html#1618" class="Function Operator">×</a> <a id="1466" class="Symbol">(</a><a id="1467" href="Jolteon.TestProperties.html#1379" class="Bound">te</a> <a id="1470" href="Jolteon.Block.html#4347" class="Function Operator">∙qcTE</a> <a id="1476" href="Jolteon.Block.html#2950" class="Field Operator">∙round</a> <a id="1483" href="Data.Nat.Base.html#1801" class="Function Operator">&lt;</a> <a id="1485" href="Jolteon.TestProperties.html#1166" class="Bound">tc</a> <a id="1488" class="Symbol">.</a><a id="1489" href="Jolteon.Block.html#4451" class="Field">roundTC</a><a id="1496" class="Symbol">)</a>
+</pre>
+<!--
+<pre class="Agda">  <a id="1517" href="Jolteon.TestProperties.html#1285" class="Function">tc-unique</a> <a id="1527" class="Symbol">=</a> <a id="1529" href="Jolteon.Block.html#5486" class="Function">getUniqueTC</a> <a id="1541" href="Jolteon.TestProperties.html#1166" class="Bound">tc</a>
+  <a id="1546" href="Jolteon.TestProperties.html#1325" class="Function">tc-majority</a> <a id="1558" class="Symbol">=</a> <a id="1560" href="Jolteon.Block.html#5416" class="Function">getQuorumTC</a> <a id="1572" href="Jolteon.TestProperties.html#1166" class="Bound">tc</a>
+  <a id="1577" href="Jolteon.TestProperties.html#1362" class="Function">tc-rounds</a> <a id="1587" class="Symbol">=</a> <a id="1589" href="Data.List.Relation.Unary.All.html#3907" class="Function">L.All.tabulate</a>
+    <a id="1608" class="Symbol">λ</a> <a id="1610" href="Jolteon.TestProperties.html#1610" class="Bound">p</a> <a id="1612" class="Symbol">→</a> <a id="1614" href="Data.List.Relation.Unary.All.html#5943" class="Function">L.All.lookup</a> <a id="1627" class="Symbol">(</a><a id="1628" href="Jolteon.Block.html#5559" class="Function">getAllRound</a> <a id="1640" href="Jolteon.TestProperties.html#1166" class="Bound">tc</a><a id="1642" class="Symbol">)</a> <a id="1644" href="Jolteon.TestProperties.html#1610" class="Bound">p</a> <a id="1646" href="Agda.Builtin.Sigma.html#235" class="InductiveConstructor Operator">,</a> <a id="1648" href="Data.List.Relation.Unary.All.html#5943" class="Function">L.All.lookup</a> <a id="1661" class="Symbol">(</a><a id="1662" href="Jolteon.Block.html#5655" class="Function">getQCBound</a> <a id="1673" href="Jolteon.TestProperties.html#1166" class="Bound">tc</a><a id="1675" class="Symbol">)</a> <a id="1677" href="Jolteon.TestProperties.html#1610" class="Bound">p</a>
+</pre>-->
+<p>Other properties talk about the function that extracts a list of QCs
+from the TC, and the function that obtains the maximum QC from the TC.
+Should we test that? (these functions might not exist in an
+implementation).</p>
+<h2 id="blocks">Blocks</h2>
+<pre class="Agda"><a id="block-round-advances"></a><a id="1926" href="Jolteon.TestProperties.html#1926" class="Function">block-round-advances</a> <a id="1947" class="Symbol">:</a> <a id="1949" class="Symbol">∀</a> <a id="1951" class="Symbol">(</a><a id="1952" href="Jolteon.TestProperties.html#1952" class="Bound">b</a> <a id="1954" class="Symbol">:</a> <a id="1956" href="Jolteon.Block.html#7428" class="Record">Block</a><a id="1961" class="Symbol">)</a> <a id="1963" class="Symbol">→</a>
+  <a id="1967" href="Jolteon.Block.html#12546" class="Function">ValidBlock</a> <a id="1978" href="Jolteon.TestProperties.html#1952" class="Bound">b</a>
+  <a id="1982" href="Prelude.InferenceRules.html#13789" class="Function Operator">──────────────────────────────</a>
+  <a id="2015" href="Jolteon.TestProperties.html#1952" class="Bound">b</a> <a id="2017" href="Jolteon.Block.html#2950" class="Field Operator">∙round</a> <a id="2024" href="Data.Nat.Base.html#2289" class="Function Operator">&gt;</a> <a id="2026" class="Symbol">(</a><a id="2027" href="Jolteon.TestProperties.html#1952" class="Bound">b</a> <a id="2029" class="Symbol">.</a><a id="2030" href="Jolteon.Block.html#7483" class="Field">blockQC</a><a id="2037" class="Symbol">)</a> <a id="2039" href="Jolteon.Block.html#2950" class="Field Operator">∙round</a>
+</pre>
+<!--
+<pre class="Agda"><a id="2063" href="Jolteon.TestProperties.html#1926" class="Function">block-round-advances</a> <a id="2084" class="Symbol">_</a> <a id="2086" href="Jolteon.TestProperties.html#2086" class="Bound">p</a> <a id="2088" class="Symbol">=</a> <a id="2090" href="Jolteon.TestProperties.html#2086" class="Bound">p</a>
+</pre>-->
+<h2 id="chains">Chains</h2>
+<p>The blockId of chain is the blockId of its head.</p>
+<pre class="Agda"><a id="blockchain-id"></a><a id="2171" href="Jolteon.TestProperties.html#2171" class="Function">blockchain-id</a> <a id="2185" class="Symbol">:</a> <a id="2187" class="Symbol">∀</a> <a id="2189" class="Symbol">(</a><a id="2190" href="Jolteon.TestProperties.html#2190" class="Bound">b</a> <a id="2192" class="Symbol">:</a> <a id="2194" href="Jolteon.Block.html#7428" class="Record">Block</a><a id="2199" class="Symbol">)</a> <a id="2201" class="Symbol">(</a><a id="2202" href="Jolteon.TestProperties.html#2202" class="Bound">ch</a> <a id="2205" class="Symbol">:</a> <a id="2207" href="Jolteon.Block.html#9128" class="Function">Chain</a><a id="2212" class="Symbol">)</a> <a id="2214" class="Symbol">→</a>
+    <a id="2220" href="Jolteon.TestProperties.html#2190" class="Bound">b</a> <a id="2222" href="Jolteon.Block.html#12624" class="Record Operator">-connects-to-</a> <a id="2236" href="Jolteon.TestProperties.html#2202" class="Bound">ch</a>
+    <a id="2243" href="Prelude.InferenceRules.html#13516" class="Function Operator">─────────────────────────────────────</a>
+    <a id="2285" class="Symbol">(</a><a id="2286" href="Jolteon.TestProperties.html#2190" class="Bound">b</a> <a id="2288" class="Symbol">.</a><a id="2289" href="Jolteon.Block.html#7483" class="Field">blockQC</a><a id="2296" class="Symbol">)</a> <a id="2298" href="Jolteon.Block.html#8376" class="Field Operator">∙blockId</a> <a id="2307" href="Agda.Builtin.Equality.html#150" class="Datatype Operator">≡</a> <a id="2309" href="Jolteon.TestProperties.html#2202" class="Bound">ch</a> <a id="2312" href="Jolteon.Block.html#8376" class="Field Operator">∙blockId</a>
+  <a id="2323" href="Data.Product.Base.html#1618" class="Function Operator">×</a> <a id="2325" class="Symbol">(</a><a id="2326" href="Jolteon.TestProperties.html#2190" class="Bound">b</a> <a id="2328" class="Symbol">.</a><a id="2329" href="Jolteon.Block.html#7483" class="Field">blockQC</a><a id="2336" class="Symbol">)</a> <a id="2338" href="Jolteon.Block.html#2950" class="Field Operator">∙round</a>   <a id="2347" href="Agda.Builtin.Equality.html#150" class="Datatype Operator">≡</a> <a id="2349" href="Jolteon.TestProperties.html#2202" class="Bound">ch</a> <a id="2352" href="Jolteon.Block.html#2950" class="Field Operator">∙round</a>
+</pre>
+<!--
+<pre class="Agda"><a id="2376" href="Jolteon.TestProperties.html#2171" class="Function">blockchain-id</a> <a id="2390" class="Symbol">_</a> <a id="2392" class="Symbol">_</a> <a id="2394" href="Jolteon.TestProperties.html#2394" class="Bound">bch</a> <a id="2398" class="Symbol">=</a> <a id="2400" href="Jolteon.TestProperties.html#2394" class="Bound">bch</a> <a id="2404" class="Symbol">.</a><a id="2405" href="Jolteon.Block.html#12710" class="Field">idMatch</a> <a id="2413" href="Agda.Builtin.Sigma.html#235" class="InductiveConstructor Operator">,</a> <a id="2415" href="Jolteon.TestProperties.html#2394" class="Bound">bch</a> <a id="2419" class="Symbol">.</a><a id="2420" href="Jolteon.Block.html#12770" class="Field">roundMatch</a>
+</pre>-->
+<h2 id="local-state">Local State</h2>
+<p>The following are properties related to the local state of a
+node.</p>
+<pre class="Agda"><a id="2533" class="Keyword">module</a> <a id="2540" href="Jolteon.TestProperties.html#2540" class="Module">_</a> <a id="2542" class="Symbol">(</a><a id="2543" href="Jolteon.TestProperties.html#2543" class="Bound">s</a> <a id="2545" class="Symbol">:</a> <a id="2547" href="Jolteon.Global.State.html#636" class="Record">GlobalState</a><a id="2558" class="Symbol">)</a> <a id="2560" class="Symbol">(</a><a id="2561" href="Jolteon.TestProperties.html#2561" class="Bound">p</a> <a id="2563" class="Symbol">:</a> <a id="2565" href="Jolteon.Assumptions.html#639" class="Function">Pid</a><a id="2568" class="Symbol">)</a> <a id="2570" class="Symbol">⦃</a> <a id="2572" href="Jolteon.TestProperties.html#2572" class="Bound">_</a> <a id="2574" class="Symbol">:</a> <a id="2576" href="Jolteon.Assumptions.html#2041" class="Field">Honest</a> <a id="2583" href="Jolteon.TestProperties.html#2561" class="Bound">p</a> <a id="2585" class="Symbol">⦄</a> <a id="2587" class="Symbol">(</a><a id="2588" href="Jolteon.TestProperties.html#2588" class="Bound">Rs</a> <a id="2591" class="Symbol">:</a> <a id="2593" href="Prelude.Closures.html#4425" class="Function">Reachable</a> <a id="2603" href="Jolteon.TestProperties.html#2543" class="Bound">s</a><a id="2604" class="Symbol">)</a> <a id="2606" class="Symbol">(</a><a id="2607" class="Keyword">let</a> <a id="2611" href="Jolteon.TestProperties.html#2611" class="Bound">ls</a> <a id="2614" class="Symbol">=</a> <a id="2616" href="Jolteon.TestProperties.html#2543" class="Bound">s</a> <a id="2618" href="Jolteon.Global.State.html#1689" class="Function Operator">＠</a> <a id="2620" href="Jolteon.TestProperties.html#2561" class="Bound">p</a><a id="2621" class="Symbol">)</a> <a id="2623" class="Keyword">where</a>
+</pre>
+<ul>
+<li>The <code>qc-high</code> in the local state is always obtainable
+from the database of messages received.</li>
+</ul>
+<pre class="Agda">  <a id="2743" href="Jolteon.TestProperties.html#2743" class="Function">qc-high∈db</a> <a id="2754" class="Symbol">:</a> <a id="2756" href="Jolteon.TestProperties.html#2611" class="Bound">ls</a> <a id="2759" class="Symbol">.</a><a id="2760" href="Jolteon.Local.State.html#2713" class="Field">qc-high</a> <a id="2768" href="Jolteon.Local.State.html#5359" class="Field Operator">∙∈</a> <a id="2771" href="Jolteon.TestProperties.html#2611" class="Bound">ls</a> <a id="2774" class="Symbol">.</a><a id="2775" href="Jolteon.Local.State.html#2874" class="Field">db</a>
+</pre>
+<!--
+<pre class="Agda">  <a id="2797" href="Jolteon.TestProperties.html#2743" class="Function">qc-high∈db</a> <a id="2808" class="Symbol">=</a> <a id="2810" href="Jolteon.Properties.State.Invariants.html#12902" class="Function">P.qc-high∈db</a> <a id="2823" href="Jolteon.TestProperties.html#2588" class="Bound">Rs</a>
+</pre>-->
+<ul>
+<li>If <code>tc-last</code> is set to a TC <code>tc</code> then
+<code>r-cur</code> is set to one more than the <code>tc</code>
+round.</li>
+</ul>
+<pre class="Agda">  <a id="2937" href="Jolteon.TestProperties.html#2937" class="Function">tc-last-r≡</a> <a id="2948" class="Symbol">:</a> <a id="2950" href="Prelude.Allable.html#273" class="Function">∀[</a> <a id="2953" href="Jolteon.TestProperties.html#2953" class="Bound">tc</a> <a id="2956" href="Prelude.Allable.html#273" class="Function">∈</a> <a id="2958" href="Jolteon.TestProperties.html#2611" class="Bound">ls</a> <a id="2961" class="Symbol">.</a><a id="2962" href="Jolteon.Local.State.html#2769" class="Field">tc-last</a> <a id="2970" href="Prelude.Allable.html#273" class="Function">]</a>  <a id="2973" href="Jolteon.TestProperties.html#2611" class="Bound">ls</a> <a id="2976" class="Symbol">.</a><a id="2977" href="Jolteon.Local.State.html#2670" class="Field">r-cur</a> <a id="2983" href="Agda.Builtin.Equality.html#150" class="Datatype Operator">≡</a> <a id="2985" class="Number">1</a> <a id="2987" href="Agda.Builtin.Nat.html#336" class="Primitive Operator">+</a> <a id="2989" href="Jolteon.TestProperties.html#2953" class="Bound">tc</a> <a id="2992" href="Jolteon.Block.html#2950" class="Field Operator">∙round</a>
+</pre>
+<!--
+<pre class="Agda">  <a id="3018" href="Jolteon.TestProperties.html#2937" class="Function">tc-last-r≡</a> <a id="3029" class="Symbol">=</a> <a id="3031" href="Jolteon.Properties.State.Invariants.html#16312" class="Function">P.tc-last-r≡</a> <a id="3044" href="Jolteon.TestProperties.html#2588" class="Bound">Rs</a>
+</pre>-->
+<ul>
+<li>The field <code>r-vote</code> is always less or equal to
+<code>1 + r-cur</code>.</li>
+</ul>
+<pre class="Agda">  <a id="3128" href="Jolteon.TestProperties.html#3128" class="Function">r-vote-bound</a> <a id="3141" class="Symbol">:</a> <a id="3143" href="Jolteon.TestProperties.html#2611" class="Bound">ls</a> <a id="3146" class="Symbol">.</a><a id="3147" href="Jolteon.Local.State.html#2568" class="Field">r-vote</a> <a id="3154" href="Data.Nat.Base.html#1691" class="Datatype Operator">≤</a> <a id="3156" class="Number">1</a> <a id="3158" href="Agda.Builtin.Nat.html#336" class="Primitive Operator">+</a> <a id="3160" href="Jolteon.TestProperties.html#2611" class="Bound">ls</a> <a id="3163" class="Symbol">.</a><a id="3164" href="Jolteon.Local.State.html#2670" class="Field">r-cur</a>
+</pre>
+<!--
+<pre class="Agda">  <a id="3189" href="Jolteon.TestProperties.html#3128" class="Function">r-vote-bound</a> <a id="3202" class="Symbol">=</a> <a id="3204" href="Jolteon.Properties.State.Invariants.html#17931" class="Function">P.r-vote-Bound</a> <a id="3219" href="Jolteon.TestProperties.html#2588" class="Bound">Rs</a>
+</pre>-->
+<p>There are many more properties, but they require more complex testing
+as they are related to * Global state: for example, the whole history of
+messages in the system (<code>history</code> in the formalization) * The
+effect of a step on state: for example monotonicity of
+<code>r-cur</code>. * Specific steps: for example, properties that
+assert that certain conditions hold before voting (or after voting).</p>
+</body>
+</html>

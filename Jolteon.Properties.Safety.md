@@ -1,0 +1,17 @@
+# Global properties of the whole Jolteon protocol
+<!--
+<pre class="Agda"><a id="64" class="Symbol">{-#</a> <a id="68" class="Keyword">OPTIONS</a> <a id="76" class="Pragma">--safe</a> <a id="83" class="Symbol">#-}</a>
+<a id="87" class="Keyword">open</a> <a id="92" class="Keyword">import</a> <a id="99" href="Jolteon.Assumptions.html" class="Module">Jolteon.Assumptions</a>
+
+<a id="120" class="Keyword">module</a> <a id="127" href="Jolteon.Properties.Safety.html" class="Module">Jolteon.Properties.Safety</a> <a id="153" class="Symbol">(</a><a id="154" href="Jolteon.Properties.Safety.html#154" class="Bound">⋯</a> <a id="156" class="Symbol">:</a> <a id="158" class="Symbol">_)</a> <a id="161" class="Symbol">(</a><a id="162" class="Keyword">open</a> <a id="167" href="Jolteon.Assumptions.html#193" class="Module">Assumptions</a> <a id="179" href="Jolteon.Properties.Safety.html#154" class="Bound">⋯</a><a id="180" class="Symbol">)</a> <a id="182" class="Keyword">where</a>
+
+<a id="189" class="Keyword">open</a> <a id="194" class="Keyword">import</a> <a id="201" href="Jolteon.html" class="Module">Jolteon</a> <a id="209" href="Jolteon.Properties.Safety.html#154" class="Bound">⋯</a>
+<a id="211" class="Keyword">open</a> <a id="216" class="Keyword">import</a> <a id="223" href="Jolteon.Properties.Core.html" class="Module">Jolteon.Properties.Core</a> <a id="247" href="Jolteon.Properties.Safety.html#154" class="Bound">⋯</a>
+<a id="249" class="Keyword">open</a> <a id="254" class="Keyword">import</a> <a id="261" href="Jolteon.Properties.Steps.html" class="Module">Jolteon.Properties.Steps</a> <a id="286" href="Jolteon.Properties.Safety.html#154" class="Bound">⋯</a>
+</pre>-->
+<pre class="Agda"><a id="304" class="Keyword">open</a> <a id="309" class="Keyword">import</a> <a id="316" href="Jolteon.Properties.Safety.Core.html" class="Module">Jolteon.Properties.Safety.Core</a> <a id="347" href="Jolteon.Properties.Safety.html#154" class="Bound">⋯</a> <a id="349" class="Keyword">public</a>
+<a id="356" class="Keyword">open</a> <a id="361" class="Keyword">import</a> <a id="368" href="Jolteon.Properties.Safety.Lemma1.html" class="Module">Jolteon.Properties.Safety.Lemma1</a> <a id="401" href="Jolteon.Properties.Safety.html#154" class="Bound">⋯</a> <a id="403" class="Keyword">public</a>
+<a id="410" class="Keyword">open</a> <a id="415" class="Keyword">import</a> <a id="422" href="Jolteon.Properties.Safety.Lemma2.html" class="Module">Jolteon.Properties.Safety.Lemma2</a> <a id="455" href="Jolteon.Properties.Safety.html#154" class="Bound">⋯</a> <a id="457" class="Keyword">public</a>
+<a id="464" class="Keyword">open</a> <a id="469" class="Keyword">import</a> <a id="476" href="Jolteon.Properties.Safety.Lemma3.html" class="Module">Jolteon.Properties.Safety.Lemma3</a> <a id="509" href="Jolteon.Properties.Safety.html#154" class="Bound">⋯</a> <a id="511" class="Keyword">public</a>
+<a id="518" class="Keyword">open</a> <a id="523" class="Keyword">import</a> <a id="530" href="Jolteon.Properties.Safety.Consistency.html" class="Module">Jolteon.Properties.Safety.Consistency</a> <a id="568" href="Jolteon.Properties.Safety.html#154" class="Bound">⋯</a> <a id="570" class="Keyword">public</a>
+</pre>

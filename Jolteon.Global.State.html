@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Jolteon.Global.State</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="Agda.css" />
+</head>
+<body>
+<h1 id="global-state-of-the-entire-system.">Global state of the entire
+system.</h1>
+<!--
+<pre class="Agda"><a id="53" class="Symbol">{-#</a> <a id="57" class="Keyword">OPTIONS</a> <a id="65" class="Pragma">--safe</a> <a id="72" class="Symbol">#-}</a>
+<a id="76" class="Keyword">open</a> <a id="81" class="Keyword">import</a> <a id="88" href="Prelude.html" class="Module">Prelude</a>
+<a id="96" class="Keyword">open</a> <a id="101" class="Keyword">import</a> <a id="108" href="Hash.html" class="Module">Hash</a>
+
+<a id="114" class="Keyword">open</a> <a id="119" class="Keyword">import</a> <a id="126" href="Jolteon.Base.html" class="Module">Jolteon.Base</a>
+<a id="139" class="Keyword">open</a> <a id="144" class="Keyword">import</a> <a id="151" href="Jolteon.Assumptions.html" class="Module">Jolteon.Assumptions</a>
+
+<a id="172" class="Keyword">module</a> <a id="179" href="Jolteon.Global.State.html" class="Module">Jolteon.Global.State</a> <a id="200" class="Symbol">(</a><a id="201" href="Jolteon.Global.State.html#201" class="Bound">⋯</a> <a id="203" class="Symbol">:</a> <a id="205" class="Symbol">_)</a> <a id="208" class="Symbol">(</a><a id="209" class="Keyword">open</a> <a id="214" href="Jolteon.Assumptions.html#193" class="Module">Assumptions</a> <a id="226" href="Jolteon.Global.State.html#201" class="Bound">⋯</a><a id="227" class="Symbol">)</a> <a id="229" class="Keyword">where</a>
+
+<a id="236" class="Keyword">open</a> <a id="241" class="Keyword">import</a> <a id="248" href="Jolteon.Block.html" class="Module">Jolteon.Block</a> <a id="262" href="Jolteon.Global.State.html#201" class="Bound">⋯</a>
+<a id="264" class="Keyword">open</a> <a id="269" class="Keyword">import</a> <a id="276" href="Jolteon.Message.html" class="Module">Jolteon.Message</a> <a id="292" href="Jolteon.Global.State.html#201" class="Bound">⋯</a>
+<a id="294" class="Keyword">open</a> <a id="299" class="Keyword">import</a> <a id="306" href="Jolteon.Local.State.html" class="Module">Jolteon.Local.State</a> <a id="326" href="Jolteon.Global.State.html#201" class="Bound">⋯</a>
+</pre>-->
+The global state consists of a local state for each individual node.
+<pre class="Agda"><a id="StateMap"></a><a id="414" href="Jolteon.Global.State.html#414" class="Function">StateMap</a> <a id="423" class="Symbol">:</a> <a id="425" href="Agda.Primitive.html#388" class="Primitive">Type</a>
+<a id="430" href="Jolteon.Global.State.html#414" class="Function">StateMap</a> <a id="439" class="Symbol">=</a> <a id="441" href="Jolteon.Assumptions.html#11137" class="Function">HonestVec</a> <a id="451" href="Jolteon.Local.State.html#2494" class="Record">LocalState</a>
+</pre>
+Other than that, it recors in-flight messages, and the whole history of
+previous messages.
+<pre class="Agda"><a id="TPMessage"></a><a id="566" href="Jolteon.Global.State.html#566" class="Function">TPMessage</a>  <a id="577" class="Symbol">=</a> <a id="579" href="Jolteon.Base.html#111" class="Function">Time</a> <a id="584" href="Data.Product.Base.html#1618" class="Function Operator">×</a> <a id="586" href="Jolteon.Assumptions.html#639" class="Function">Pid</a> <a id="590" href="Data.Product.Base.html#1618" class="Function Operator">×</a> <a id="592" href="Jolteon.Message.html#754" class="Datatype">Message</a>
+<a id="TPMessages"></a><a id="600" href="Jolteon.Global.State.html#600" class="Function">TPMessages</a> <a id="611" class="Symbol">=</a> <a id="613" href="Agda.Builtin.List.html#147" class="Datatype">List</a> <a id="618" href="Jolteon.Global.State.html#566" class="Function">TPMessage</a>
+
+<a id="629" class="Keyword">record</a> <a id="GlobalState"></a><a id="636" href="Jolteon.Global.State.html#636" class="Record">GlobalState</a> <a id="648" class="Symbol">:</a> <a id="650" href="Agda.Primitive.html#388" class="Primitive">Type</a> <a id="655" class="Keyword">where</a>
+  <a id="663" class="Keyword">constructor</a> <a id="mkGlobalState"></a><a id="675" href="Jolteon.Global.State.html#675" class="InductiveConstructor">mkGlobalState</a>
+  <a id="691" class="Keyword">field</a>
+    <a id="GlobalState.currentTime"></a><a id="701" href="Jolteon.Global.State.html#701" class="Field">currentTime</a>   <a id="715" class="Symbol">:</a> <a id="717" href="Jolteon.Base.html#111" class="Function">Time</a>
+    <a id="GlobalState.stateMap"></a><a id="726" href="Jolteon.Global.State.html#726" class="Field">stateMap</a>      <a id="740" class="Symbol">:</a> <a id="742" href="Jolteon.Global.State.html#414" class="Function">StateMap</a>  <a id="752" class="Comment">-- A map assigning each PID its local state.</a>
+    <a id="GlobalState.networkBuffer"></a><a id="801" href="Jolteon.Global.State.html#801" class="Field">networkBuffer</a> <a id="815" class="Symbol">:</a> <a id="817" href="Jolteon.Global.State.html#600" class="Function">TPMessages</a> <a id="828" class="Comment">-- Messages in transit on the network.</a>
+    <a id="GlobalState.history"></a><a id="871" href="Jolteon.Global.State.html#871" class="Field">history</a>       <a id="885" class="Symbol">:</a> <a id="887" href="Jolteon.Message.html#928" class="Function">Messages</a>  <a id="897" class="Comment">-- All messages seen so far.</a>
+</pre>
+<!--
+<pre class="Agda"><a id="943" class="Keyword">open</a> <a id="948" href="Jolteon.Global.State.html#636" class="Module">GlobalState</a> <a id="960" class="Keyword">public</a>
+<a id="967" class="Keyword">variable</a> <a id="976" href="Jolteon.Global.State.html#976" class="Generalizable">s</a> <a id="978" href="Jolteon.Global.State.html#978" class="Generalizable">s′</a> <a id="981" href="Jolteon.Global.State.html#981" class="Generalizable">s″</a> <a id="984" class="Symbol">:</a> <a id="986" href="Jolteon.Global.State.html#636" class="Record">GlobalState</a>
+</pre>-->
+The initial global state starts at epoch 1 with no messages and initial
+local states.
+<pre class="Agda"><a id="initStateMap"></a><a id="1101" href="Jolteon.Global.State.html#1101" class="Function">initStateMap</a> <a id="1114" class="Symbol">:</a> <a id="1116" href="Jolteon.Global.State.html#414" class="Function">StateMap</a>
+<a id="1125" href="Jolteon.Global.State.html#1101" class="Function">initStateMap</a> <a id="1138" class="Symbol">=</a> <a id="1140" href="Data.Vec.Base.html#6493" class="Function">V.replicate</a> <a id="1152" class="Symbol">_</a> <a id="1154" href="Jolteon.Local.State.html#3506" class="Function">initLocalState</a>
+
+<a id="initGlobalState"></a><a id="1170" href="Jolteon.Global.State.html#1170" class="Function">initGlobalState</a> <a id="1186" class="Symbol">:</a> <a id="1188" href="Jolteon.Global.State.html#636" class="Record">GlobalState</a>
+<a id="1200" href="Jolteon.Global.State.html#1170" class="Function">initGlobalState</a> <a id="1216" class="Symbol">=</a> <a id="1218" href="Jolteon.Global.State.html#675" class="InductiveConstructor">mkGlobalState</a> <a id="1232" class="Number">0</a> <a id="1234" href="Jolteon.Global.State.html#1101" class="Function">initStateMap</a> <a id="1247" href="Agda.Builtin.List.html#184" class="InductiveConstructor">[]</a> <a id="1250" href="Agda.Builtin.List.html#184" class="InductiveConstructor">[]</a>
+</pre>
+<!--
+<pre class="Agda"><a id="1270" class="Keyword">instance</a> <a id="Def-StateMap"></a><a id="1279" href="Jolteon.Global.State.html#1279" class="Function">Def-StateMap</a>     <a id="1296" class="Symbol">=</a> <a id="1298" href="Prelude.Default.html#123" class="Record">Default</a> <a id="1306" class="Symbol">_</a> <a id="1308" href="Function.Base.html#4486" class="Function Operator">∋</a> <a id="1310" class="Symbol">λ</a> <a id="1312" class="Keyword">where</a> <a id="1318" class="Symbol">.</a><a id="1319" href="Prelude.Default.html#163" class="Field">def</a> <a id="1323" class="Symbol">→</a> <a id="1325" href="Jolteon.Global.State.html#1101" class="Function">initStateMap</a>
+         <a id="Def-GlobalState"></a><a id="1347" href="Jolteon.Global.State.html#1347" class="Function">Def-GlobalState</a>  <a id="1364" class="Symbol">=</a> <a id="1366" href="Prelude.Default.html#123" class="Record">Default</a> <a id="1374" class="Symbol">_</a> <a id="1376" href="Function.Base.html#4486" class="Function Operator">∋</a> <a id="1378" class="Symbol">λ</a> <a id="1380" class="Keyword">where</a> <a id="1386" class="Symbol">.</a><a id="1387" href="Prelude.Default.html#163" class="Field">def</a> <a id="1391" class="Symbol">→</a> <a id="1393" href="Jolteon.Global.State.html#1170" class="Function">initGlobalState</a>
+         <a id="Init-GlobalState"></a><a id="1418" href="Jolteon.Global.State.html#1418" class="Function">Init-GlobalState</a> <a id="1435" class="Symbol">=</a> <a id="1437" href="Prelude.Initial.html#87" class="Record">HasInitial</a> <a id="1448" class="Symbol">_</a> <a id="1450" href="Function.Base.html#4486" class="Function Operator">∋</a> <a id="1452" class="Symbol">λ</a> <a id="1454" class="Keyword">where</a> <a id="1460" class="Symbol">.</a><a id="1461" href="Prelude.Initial.html#141" class="Field">Initial</a> <a id="1469" class="Symbol">→</a> <a id="1471" href="Agda.Builtin.Equality.html#150" class="Datatype Operator">_≡</a> <a id="1474" href="Jolteon.Global.State.html#1170" class="Function">initGlobalState</a>
+</pre>-->
+<pre class="Agda"><a id="1506" class="Comment">-- Retrieve a replica&#39;s local state.</a>
+<a id="_＠ᵐ_"></a><a id="1543" href="Jolteon.Global.State.html#1543" class="Function Operator">_＠ᵐ_</a> <a id="1548" class="Symbol">:</a> <a id="1550" href="Jolteon.Global.State.html#414" class="Function">StateMap</a> <a id="1559" class="Symbol">→</a> <a id="1561" class="Symbol">∀</a> <a id="1563" href="Jolteon.Global.State.html#1563" class="Bound">p</a> <a id="1565" class="Symbol">⦃</a> <a id="1567" href="Jolteon.Global.State.html#1567" class="Bound">_</a> <a id="1569" class="Symbol">:</a> <a id="1571" href="Jolteon.Assumptions.html#2041" class="Field">Honest</a> <a id="1578" href="Jolteon.Global.State.html#1563" class="Bound">p</a> <a id="1580" class="Symbol">⦄</a> <a id="1582" class="Symbol">→</a> <a id="1584" href="Jolteon.Local.State.html#2494" class="Record">LocalState</a>
+<a id="1595" href="Jolteon.Global.State.html#1595" class="Bound">sm</a> <a id="1598" href="Jolteon.Global.State.html#1543" class="Function Operator">＠ᵐ</a> <a id="1601" href="Jolteon.Global.State.html#1601" class="Bound">p</a> <a id="1603" class="Symbol">=</a> <a id="1605" href="Jolteon.Assumptions.html#11282" class="Function">pLookup</a> <a id="1613" href="Jolteon.Global.State.html#1595" class="Bound">sm</a> <a id="1616" href="Jolteon.Global.State.html#1601" class="Bound">p</a>
+
+<a id="_＠ᵐᵖ_"></a><a id="1619" href="Jolteon.Global.State.html#1619" class="Function Operator">_＠ᵐᵖ_</a> <a id="1625" class="Symbol">:</a> <a id="1627" href="Jolteon.Global.State.html#414" class="Function">StateMap</a> <a id="1636" class="Symbol">→</a> <a id="1638" href="Jolteon.Assumptions.html#11179" class="Function">HonestPid</a> <a id="1648" class="Symbol">→</a> <a id="1650" href="Jolteon.Local.State.html#2494" class="Record">LocalState</a>
+<a id="1661" href="Jolteon.Global.State.html#1661" class="Bound">sm</a> <a id="1664" href="Jolteon.Global.State.html#1619" class="Function Operator">＠ᵐᵖ</a> <a id="1668" href="Jolteon.Global.State.html#1668" class="Bound">hp</a> <a id="1671" class="Symbol">=</a> <a id="1673" href="Jolteon.Assumptions.html#11215" class="Function">pLookup′</a> <a id="1682" href="Jolteon.Global.State.html#1661" class="Bound">sm</a> <a id="1685" href="Jolteon.Global.State.html#1668" class="Bound">hp</a>
+
+<a id="_＠_"></a><a id="1689" href="Jolteon.Global.State.html#1689" class="Function Operator">_＠_</a> <a id="1693" class="Symbol">:</a> <a id="1695" href="Jolteon.Global.State.html#636" class="Record">GlobalState</a> <a id="1707" class="Symbol">→</a> <a id="1709" class="Symbol">∀</a> <a id="1711" href="Jolteon.Global.State.html#1711" class="Bound">p</a> <a id="1713" class="Symbol">⦃</a> <a id="1715" href="Jolteon.Global.State.html#1715" class="Bound">_</a> <a id="1717" class="Symbol">:</a> <a id="1719" href="Jolteon.Assumptions.html#2041" class="Field">Honest</a> <a id="1726" href="Jolteon.Global.State.html#1711" class="Bound">p</a> <a id="1728" class="Symbol">⦄</a> <a id="1730" class="Symbol">→</a> <a id="1732" href="Jolteon.Local.State.html#2494" class="Record">LocalState</a>
+<a id="1743" href="Jolteon.Global.State.html#1743" class="Bound">s</a> <a id="1745" href="Jolteon.Global.State.html#1689" class="Function Operator">＠</a> <a id="1747" href="Jolteon.Global.State.html#1747" class="Bound">p</a> <a id="1749" class="Symbol">=</a> <a id="1751" href="Jolteon.Global.State.html#1743" class="Bound">s</a> <a id="1753" class="Symbol">.</a><a id="1754" href="Jolteon.Global.State.html#726" class="Field">stateMap</a> <a id="1763" href="Jolteon.Global.State.html#1543" class="Function Operator">＠ᵐ</a> <a id="1766" href="Jolteon.Global.State.html#1747" class="Bound">p</a>
+
+<a id="_＠ʰ_"></a><a id="1769" href="Jolteon.Global.State.html#1769" class="Function Operator">_＠ʰ_</a> <a id="1774" class="Symbol">:</a> <a id="1776" href="Jolteon.Global.State.html#636" class="Record">GlobalState</a> <a id="1788" class="Symbol">→</a> <a id="1790" class="Symbol">∀</a> <a id="1792" class="Symbol">{</a><a id="1793" href="Jolteon.Global.State.html#1793" class="Bound">p</a><a id="1794" class="Symbol">}</a> <a id="1796" class="Symbol">→</a> <a id="1798" href="Jolteon.Assumptions.html#2041" class="Field">Honest</a> <a id="1805" href="Jolteon.Global.State.html#1793" class="Bound">p</a> <a id="1807" class="Symbol">→</a> <a id="1809" href="Jolteon.Local.State.html#2494" class="Record">LocalState</a>
+<a id="1820" href="Jolteon.Global.State.html#1820" class="Bound">s</a> <a id="1822" href="Jolteon.Global.State.html#1769" class="Function Operator">＠ʰ</a> <a id="1825" href="Jolteon.Global.State.html#1825" class="Bound">hp</a> <a id="1828" class="Symbol">=</a> <a id="1830" href="Jolteon.Assumptions.html#11215" class="Function">pLookup′</a> <a id="1839" class="Symbol">(</a><a id="1840" href="Jolteon.Global.State.html#1820" class="Bound">s</a> <a id="1842" class="Symbol">.</a><a id="1843" href="Jolteon.Global.State.html#726" class="Field">stateMap</a><a id="1851" class="Symbol">)</a> <a id="1853" class="Symbol">(_</a> <a id="1856" href="Prelude.Init.html#7498" class="InductiveConstructor Operator">,·</a> <a id="1859" href="Jolteon.Global.State.html#1825" class="Bound">hp</a><a id="1861" class="Symbol">)</a>
+
+<a id="_＠ʰᵖ_"></a><a id="1864" href="Jolteon.Global.State.html#1864" class="Function Operator">_＠ʰᵖ_</a> <a id="1870" class="Symbol">:</a> <a id="1872" href="Jolteon.Global.State.html#636" class="Record">GlobalState</a> <a id="1884" class="Symbol">→</a> <a id="1886" href="Jolteon.Assumptions.html#11179" class="Function">HonestPid</a> <a id="1896" class="Symbol">→</a> <a id="1898" href="Jolteon.Local.State.html#2494" class="Record">LocalState</a>
+<a id="1909" href="Jolteon.Global.State.html#1909" class="Bound">s</a> <a id="1911" href="Jolteon.Global.State.html#1864" class="Function Operator">＠ʰᵖ</a> <a id="1915" href="Jolteon.Global.State.html#1915" class="Bound">hp</a> <a id="1918" class="Symbol">=</a> <a id="1920" href="Jolteon.Assumptions.html#11215" class="Function">pLookup′</a> <a id="1929" class="Symbol">(</a><a id="1930" href="Jolteon.Global.State.html#1909" class="Bound">s</a> <a id="1932" class="Symbol">.</a><a id="1933" href="Jolteon.Global.State.html#726" class="Field">stateMap</a><a id="1941" class="Symbol">)</a> <a id="1943" href="Jolteon.Global.State.html#1915" class="Bound">hp</a>
+
+<a id="1947" class="Comment">-- Update a replica&#39;s local state.</a>
+<a id="_＠_%=_"></a><a id="1982" href="Jolteon.Global.State.html#1982" class="Function Operator">_＠_%=_</a> <a id="1989" class="Symbol">:</a> <a id="1991" href="Jolteon.Global.State.html#636" class="Record">GlobalState</a> <a id="2003" class="Symbol">→</a> <a id="2005" class="Symbol">∀</a> <a id="2007" href="Jolteon.Global.State.html#2007" class="Bound">p</a> <a id="2009" class="Symbol">⦃</a> <a id="2011" href="Jolteon.Global.State.html#2011" class="Bound">_</a> <a id="2013" class="Symbol">:</a> <a id="2015" href="Jolteon.Assumptions.html#2041" class="Field">Honest</a> <a id="2022" href="Jolteon.Global.State.html#2007" class="Bound">p</a> <a id="2024" class="Symbol">⦄</a> <a id="2026" class="Symbol">→</a> <a id="2028" href="Algebra.Core.html#484" class="Function">Op₁</a> <a id="2032" href="Jolteon.Local.State.html#2494" class="Record">LocalState</a> <a id="2043" class="Symbol">→</a> <a id="2045" href="Jolteon.Global.State.html#636" class="Record">GlobalState</a>
+<a id="2057" href="Jolteon.Global.State.html#2057" class="Bound">s</a> <a id="2059" href="Jolteon.Global.State.html#1982" class="Function Operator">＠</a> <a id="2061" href="Jolteon.Global.State.html#2061" class="Bound">p</a> <a id="2063" href="Jolteon.Global.State.html#1982" class="Function Operator">%=</a> <a id="2066" href="Jolteon.Global.State.html#2066" class="Bound">f</a> <a id="2068" class="Symbol">=</a> <a id="2070" class="Keyword">record</a> <a id="2077" href="Jolteon.Global.State.html#2057" class="Bound">s</a>
+  <a id="2081" class="Symbol">{</a> <a id="2083" href="Jolteon.Global.State.html#726" class="Field">stateMap</a> <a id="2092" class="Symbol">=</a> <a id="2094" href="Jolteon.Global.State.html#2057" class="Bound">s</a> <a id="2096" class="Symbol">.</a><a id="2097" href="Jolteon.Global.State.html#726" class="Field">stateMap</a> <a id="2106" href="Jolteon.Assumptions.html#11512" class="Function Operator">[</a> <a id="2108" href="Jolteon.Global.State.html#2061" class="Bound">p</a> <a id="2110" href="Jolteon.Assumptions.html#11512" class="Function Operator">]%=</a> <a id="2114" href="Jolteon.Global.State.html#2066" class="Bound">f</a> <a id="2116" class="Symbol">}</a>
+
+<a id="2119" class="Comment">-- Set a replica&#39;s local state.</a>
+<a id="_＠_≔_"></a><a id="2151" href="Jolteon.Global.State.html#2151" class="Function Operator">_＠_≔_</a> <a id="2157" class="Symbol">:</a> <a id="2159" href="Jolteon.Global.State.html#636" class="Record">GlobalState</a> <a id="2171" class="Symbol">→</a> <a id="2173" class="Symbol">∀</a> <a id="2175" href="Jolteon.Global.State.html#2175" class="Bound">p</a> <a id="2177" class="Symbol">⦃</a> <a id="2179" href="Jolteon.Global.State.html#2179" class="Bound">_</a> <a id="2181" class="Symbol">:</a> <a id="2183" href="Jolteon.Assumptions.html#2041" class="Field">Honest</a> <a id="2190" href="Jolteon.Global.State.html#2175" class="Bound">p</a> <a id="2192" class="Symbol">⦄</a> <a id="2194" class="Symbol">→</a> <a id="2196" href="Jolteon.Local.State.html#2494" class="Record">LocalState</a> <a id="2207" class="Symbol">→</a> <a id="2209" href="Jolteon.Global.State.html#636" class="Record">GlobalState</a>
+<a id="2221" href="Jolteon.Global.State.html#2221" class="Bound">s</a> <a id="2223" href="Jolteon.Global.State.html#2151" class="Function Operator">＠</a> <a id="2225" href="Jolteon.Global.State.html#2225" class="Bound">p</a> <a id="2227" href="Jolteon.Global.State.html#2151" class="Function Operator">≔</a> <a id="2229" href="Jolteon.Global.State.html#2229" class="Bound">ls</a> <a id="2232" class="Symbol">=</a> <a id="2234" class="Keyword">record</a> <a id="2241" href="Jolteon.Global.State.html#2221" class="Bound">s</a>
+  <a id="2245" class="Symbol">{</a> <a id="2247" href="Jolteon.Global.State.html#726" class="Field">stateMap</a> <a id="2256" class="Symbol">=</a> <a id="2258" href="Jolteon.Global.State.html#2221" class="Bound">s</a> <a id="2260" class="Symbol">.</a><a id="2261" href="Jolteon.Global.State.html#726" class="Field">stateMap</a> <a id="2270" href="Jolteon.Assumptions.html#11406" class="Function Operator">[</a> <a id="2272" href="Jolteon.Global.State.html#2225" class="Bound">p</a> <a id="2274" href="Jolteon.Assumptions.html#11406" class="Function Operator">]≔</a> <a id="2277" href="Jolteon.Global.State.html#2229" class="Bound">ls</a> <a id="2280" class="Symbol">}</a>
+</pre>
+<p>–&gt;</p>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Jolteon</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="Agda.css" />
+</head>
+<body>
+<h1 id="decidability-of-logical-propositions">Decidability of logical
+propositions</h1>
+<p>All the logical propositional appearing in the formulation of the
+Jolteon protocol (c.f. <code>Jolteon</code>) are in fact
+<strong>decidable</strong>, meaning that we can utilize
+<em>proof-by-computation</em> to automatically discharge proofs on
+closed terms. (c.f. <code>Jolteon.Test</code>).</p>
+<p>Many of these are <strong>already</strong> decidable, by virtue of
+the decidability of their building blocks.</p>
+<p>The rest of these files provide manual proofs that this is indeed the
+case for all other propositions where this is not automatically
+derived.</p>
+<pre class="Agda"><a id="544" class="Symbol">{-#</a> <a id="548" class="Keyword">OPTIONS</a> <a id="556" class="Pragma">--safe</a> <a id="563" class="Symbol">#-}</a>
+<a id="567" class="Keyword">open</a> <a id="572" class="Keyword">import</a> <a id="579" href="Jolteon.Assumptions.html" class="Module">Jolteon.Assumptions</a>
+
+<a id="600" class="Keyword">module</a> <a id="607" href="Jolteon.html" class="Module">Jolteon</a> <a id="615" class="Symbol">(</a><a id="616" href="Jolteon.html#616" class="Bound">⋯</a> <a id="618" class="Symbol">:</a> <a id="620" href="Jolteon.Assumptions.html#193" class="Record">Assumptions</a><a id="631" class="Symbol">)</a> <a id="633" class="Keyword">where</a>
+
+<a id="640" class="Keyword">open</a> <a id="645" class="Keyword">import</a> <a id="652" href="Jolteon.Base.html" class="Module">Jolteon.Base</a> <a id="665" class="Keyword">public</a>
+<a id="672" class="Keyword">open</a> <a id="677" class="Keyword">import</a> <a id="684" href="Jolteon.Assumptions.html" class="Module">Jolteon.Assumptions</a> <a id="704" class="Keyword">public</a>
+
+<a id="712" class="Keyword">open</a> <a id="717" class="Keyword">import</a> <a id="724" href="Jolteon.Block.html" class="Module">Jolteon.Block</a> <a id="738" href="Jolteon.html#616" class="Bound">⋯</a> <a id="740" class="Keyword">public</a>
+<a id="747" class="Keyword">open</a> <a id="752" class="Keyword">import</a> <a id="759" href="Jolteon.Message.html" class="Module">Jolteon.Message</a> <a id="775" href="Jolteon.html#616" class="Bound">⋯</a> <a id="777" class="Keyword">public</a>
+<a id="784" class="Keyword">open</a> <a id="789" class="Keyword">import</a> <a id="796" href="Jolteon.Local.State.html" class="Module">Jolteon.Local.State</a> <a id="816" href="Jolteon.html#616" class="Bound">⋯</a> <a id="818" class="Keyword">public</a>
+<a id="825" class="Keyword">open</a> <a id="830" class="Keyword">import</a> <a id="837" href="Jolteon.Local.Step.html" class="Module">Jolteon.Local.Step</a> <a id="856" href="Jolteon.html#616" class="Bound">⋯</a> <a id="858" class="Keyword">public</a>
+<a id="865" class="Keyword">open</a> <a id="870" class="Keyword">import</a> <a id="877" href="Jolteon.Global.State.html" class="Module">Jolteon.Global.State</a> <a id="898" href="Jolteon.html#616" class="Bound">⋯</a> <a id="900" class="Keyword">public</a>
+<a id="907" class="Keyword">open</a> <a id="912" class="Keyword">import</a> <a id="919" href="Jolteon.Global.NoForging.html" class="Module">Jolteon.Global.NoForging</a> <a id="944" href="Jolteon.html#616" class="Bound">⋯</a> <a id="946" class="Keyword">public</a>
+  <a id="955" class="Keyword">using</a> <a id="961" class="Symbol">(</a><a id="962" href="Jolteon.Global.NoForging.html#2014" class="Function">NoSignatureForging</a><a id="980" class="Symbol">)</a>
+<a id="982" class="Keyword">open</a> <a id="987" class="Keyword">import</a> <a id="994" href="Jolteon.Global.Step.html" class="Module">Jolteon.Global.Step</a> <a id="1014" href="Jolteon.html#616" class="Bound">⋯</a> <a id="1016" class="Keyword">public</a>
+<a id="1023" class="Keyword">open</a> <a id="1028" class="Keyword">import</a> <a id="1035" href="Jolteon.Global.Trace.html" class="Module">Jolteon.Global.Trace</a> <a id="1056" href="Jolteon.html#616" class="Bound">⋯</a> <a id="1058" class="Keyword">public</a>
+</pre>
+</body>
+</html>
