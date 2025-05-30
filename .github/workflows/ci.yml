@@ -1,0 +1,47 @@
+name: Agda CI
+on:
+  # schedule: [{cron: '0 0 * * *'}]
+  push:
+    branches: main
+    paths: 'agda-src/**'
+  pull_request:
+    paths: 'agda-src/**'
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Agda
+        uses: wenkokke/setup-agda@main
+        with:
+          agda-version: '2.7.0'
+          agda-stdlib-version: '2.1.1'
+
+      - name: Install pandoc
+        run: sudo apt-get install -y pandoc
+
+      - name: Typecheck Agda files
+        working-directory: agda-src
+        run: agda index.lagda.md
+
+      - name: Generate HTML
+        working-directory: agda-src
+        run: ./render.sh
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: HTML files
+          path: |
+            agda-src/html/*.html
+            agda-src/html/Agda.css
+
+      - name: Deploy webpage to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            branch: gh-pages
+            folder: agda-src/html/
+            single-commit: true
+            silent: true
