@@ -3,9 +3,9 @@ on:
   # schedule: [{cron: '0 0 * * *'}]
   push:
     branches: main
-    paths: 'agda-src/**'
+    paths: ['src/**', '.github/workflows/ci.yml']
   pull_request:
-    paths: 'agda-src/**'
+    paths: ['src/**', '.github/workflows/ci.yml']
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -22,26 +22,18 @@ jobs:
         run: sudo apt-get install -y pandoc
 
       - name: Typecheck Agda files
-        working-directory: agda-src
+        working-directory: src
         run: agda index.lagda.md
 
       - name: Generate HTML
-        working-directory: agda-src
+        working-directory: src
         run: ./render.sh
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: HTML files
-          path: |
-            agda-src/html/*.html
-            agda-src/html/Agda.css
 
       - name: Deploy webpage to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
             token: ${{ secrets.GITHUB_TOKEN }}
             branch: gh-pages
-            folder: agda-src/html/
+            folder: src/html/
             single-commit: true
             silent: true
