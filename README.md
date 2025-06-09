@@ -1,4 +1,5 @@
-## An Agda mechanization of the Jolteon consensus protocol [![CI](https://github.com/input-output-hk/formal-jolteon/workflows/CI/badge.svg)](https://github.com/input-output-hk/formal-jolteon/actions)
+## An Agda mechanization of the Jolteon consensus protocol
+[![CI](https://github.com/input-output-hk/formal-jolteon/workflows/Agda%20CI/badge.svg)](https://github.com/input-output-hk/formal-jolteon/actions)
 
 Based on:
 
