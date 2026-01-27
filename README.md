@@ -3,7 +3,28 @@
 
 Based on:
 
-    Gelashvili et al., 2022, May. "Jolteon and Ditto: Network-adaptive efficient consensus with asynchronous fallback"
+> **Jolteon and Ditto: Network-adaptive efficient consensus with asynchronous fallback**
+>
+> Rati Gelashvili, Lefteris Kokoris-Kogias, Alberto Sonnino, Alexander Spiegelman, Zhuolun Xiang
+>
+> *International Conference on Financial Cryptography and Data Security, 2022*
+
+The methodology is briefly described in a [TYPES'25 abstract](https://omelkonian.github.io/data/publications/formal-jolteon-short.pdf):
+
+> **Mechanized safety of Jolteon consensus in Agda**
+>
+> Orestis Melkonian, Mauro Jaskelioff, and James Chapman
+>
+> *31st International Conference on Types for Proofs and Programs, 2025*
+
+which itself was first developed for the simpler [Streamlet protocol](https://github.com/input-output-hk/formal-streamlet), and is described in more detail in an [FMBC'25 paper](https://omelkonian.github.io/data/publications/formal-streamlet.pdf):
+
+> **A readable and computable formalization of the Streamlet consensus protocol**
+>
+> Mauro Jaskelioff, Orestis Melkonian, and James Chapman
+>
+> *31st International Conference on Types for Proofs and Programs, 2025*
+
 
 ## HTML
 
@@ -17,6 +38,3 @@ We are actively working on more results in a private repo that we'll publish soo
   1. prove decidability results
   2. implement a sound-by-construction trace verifier
   3. extract these decidability proofs to decision procedures
-- **Sliced semantic view** of a single replica's behaviour:
-  1. prove that the sliced semantics is *sound & complete* w.r.t. the global semantics
-  2. extract a *sound & complete* sliced trace verifier for conformance testing
